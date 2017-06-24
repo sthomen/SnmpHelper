@@ -375,10 +375,9 @@ class SnmpHelper {
 	protected SnmpHelperTree walkV3(OID root) throws IOException {
 		initializeV3Target();
 
-		TreeUtils tu=new TreeUtils(snmp, new DefaultPDUFactory());
+		TreeUtils tu=new TreeUtils(snmp, new SnmpHelperPDUFactory());
 		List<TreeEvent> tree=tu.getSubtree(v3target, root);
 
 		return new SnmpHelperTree(tree);
 	}
-
 }
