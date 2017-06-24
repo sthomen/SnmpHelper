@@ -156,12 +156,12 @@ class SnmpHelper {
 	}
 
 	// endpoint
-	public Integer walk(String oidstr) throws IOException {
+	public SnmpHelperTree walk(String oidstr) throws IOException {
 		return walk(new OID(oidstr));
 	}
 
 	// endpoint
-	public Integer walk(OID root) throws IOException {
+	public SnmpHelperTree walk(OID root) throws IOException {
 		switch (version) {
 			case SnmpConstants.version1:
 			case SnmpConstants.version2c:
@@ -226,10 +226,13 @@ class SnmpHelper {
 	}
 
 	// endpoint
-	protected Integer walkV2c(OID root) throws IOException {
+	protected SnmpHelperTree walkV2c(OID root) throws IOException {
 		initializeV2cTarget();
 
-		return null;
+		TreeUtils tu=new TreeUtils(snmp, new DefaultPDUFactory());
+		List<TreeEvent> tree=tu.getSubtree(v2ctarget, root);
+
+		return new SnmpHelperTree(tree);
 	}
 
 	/*************************************************************************
@@ -369,16 +372,13 @@ class SnmpHelper {
 		snmp.send(pdu, v3target);
 	}
 
-	protected Integer walkV3(OID root) throws IOException {
+	protected SnmpHelperTree walkV3(OID root) throws IOException {
 		initializeV3Target();
 
-		PDUFactory pdufactory = (PDUFactory)new DefaultPDUFactory();
-
-		TreeUtils tu=new TreeUtils(snmp, pdufactory);
+		TreeUtils tu=new TreeUtils(snmp, new DefaultPDUFactory());
 		List<TreeEvent> tree=tu.getSubtree(v3target, root);
 
-		System.out.println(tree.toString());
-
-		return null;
+		return new SnmpHelperTree(tree);
 	}
+
 }
