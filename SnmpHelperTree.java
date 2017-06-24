@@ -33,6 +33,9 @@ class SnmpHelperTree {
 
 	public void loadTreeEventList(List<TreeEvent> tree) {
 		this.tree = tree;
+		this.tree.clear();	// XXX since tree is returned as a refernce in getContents(),
+					// it will wipe previous loads, but this should not be harfmul
+					// at this stage
 
 		Iterator iter = this.tree.iterator();
 
