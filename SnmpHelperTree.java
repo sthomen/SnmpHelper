@@ -20,7 +20,8 @@ class SnmpHelperTree {
 	private List<TreeEvent> tree = null;
 
 	SnmpHelperTree(List<TreeEvent> tree) {
-		loadTreeEventList(tree);
+		this.tree = tree;
+		loadTreeEventList();
 	}
 
 	public Map<String,String> getContents() {
@@ -31,13 +32,9 @@ class SnmpHelperTree {
 		return tree;
 	}
 
-	public void loadTreeEventList(List<TreeEvent> tree) {
-		this.tree = tree;
-		this.tree.clear();	// XXX since tree is returned as a refernce in getContents(),
-					// it will wipe previous loads, but this should not be harfmul
-					// at this stage
-
-		Iterator iter = this.tree.iterator();
+	public void loadTreeEventList() {
+		contents.clear();
+		Iterator iter = tree.iterator();
 
 		do {
 			TreeEvent te = (TreeEvent)iter.next();
