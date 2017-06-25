@@ -1,4 +1,4 @@
-SnmpHelper 1.0
+SnmpHelper 1.1
 ==============
 
 This is a small class that makes working with SNMP4J much simpler for
