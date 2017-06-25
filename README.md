@@ -1,5 +1,5 @@
-SnmpHelper
-==========
+SnmpHelper 1.0
+==============
 
 This is a small class that makes working with SNMP4J much simpler for
 non-complicated queries.
@@ -7,6 +7,8 @@ non-complicated queries.
 It completely encapsulates the many SNMP4J classes and provides
 chainable methods for setting up get, set and walk queries to SNMPv1,
 v2c and v3 Agents.
+
+This version of SnmpHelper is built on SNMP4J 2.5 (2.5.6 specifically).
 
 Building
 --------
