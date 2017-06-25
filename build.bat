@@ -4,6 +4,8 @@ set JAR=%JAVA_HOME%\bin\jar.exe
 set SOURCES=src
 set BASEPACKAGE=net
 
+for /F "tokens=*" %%v in (VERSION) do set "VERSION=%%v"
+
 for /f %%f in ('dir /b snmp4j*.jar') do set "SNMP4J=%%~nxf"
 
 set JAVAC_ARGS=-source "1.7" -target "1.7" -d . -cp ".;%SNMP4J%"
@@ -18,7 +20,7 @@ echo Class-Path: %SNMP4J% > MANIFEST
 
 echo Packaging JAR...
 
-"%JAR%" cvfm SnmpHelper.jar MANIFEST %BASEPACKAGE%
+"%JAR%" cvfm SnmpHelper-%VERSION%.jar MANIFEST %BASEPACKAGE%
 
 echo Cleaning up...
 
