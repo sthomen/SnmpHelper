@@ -18,7 +18,7 @@ import java.util.List;
 
 import java.io.IOException;
 
-class SnmpHelper {
+public class SnmpHelper {
 	private TransportMapping transport=null;
 	private Snmp snmp=null;
 
@@ -41,11 +41,16 @@ class SnmpHelper {
 	private OID privhash=null;
 	private OctetString priv_password=null;
 
-	SnmpHelper() throws IOException {
-		transport = new DefaultUdpTransportMapping();
-		snmp = new Snmp(transport);
+	public SnmpHelper() {
+		try {
+			transport = new DefaultUdpTransportMapping();
+			snmp = new Snmp(transport);
 
-		transport.listen();
+			transport.listen();
+		} catch (IOException e) { 
+			snmp = null;
+			transport = null;
+		}
 	}
 
 	/*************************************************************************
@@ -185,7 +190,10 @@ class SnmpHelper {
 	}
 
 	// Initializes a target (if required) for the get/set/walk methods
-	public SnmpHelper initializeV2cTarget() {
+	public SnmpHelper initializeV2cTarget() throws IOException {
+		if (snmp == null)
+			throw new IOException();
+
 		if (community != null && address != null) {
 			v2ctarget = new CommunityTarget();
 			v2ctarget.setCommunity(new OctetString(community));
@@ -242,7 +250,11 @@ class SnmpHelper {
 	 ************************************************************************/
 
 	// Initializes a target (if required) for the get/set/walk methods
-	public SnmpHelper initializeV3Target() {
+	public SnmpHelper initializeV3Target() throws IOException {
+		if (snmp == null)
+			throw new IOException();
+
+
 		if (usm == null) {
 			usm = new USM(SecurityProtocols.getInstance(), new OctetString(MPv3.createLocalEngineID()), 0);
 			SecurityModels.getInstance().addSecurityModel(usm);

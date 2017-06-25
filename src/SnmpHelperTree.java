@@ -17,11 +17,11 @@ import java.util.Iterator;
  * of limited usefulness.
  */
 
-class SnmpHelperTree {
+public class SnmpHelperTree {
 	private Map<String,String> contents = new HashMap<String,String>();
 	private List<TreeEvent> tree = null;
 
-	SnmpHelperTree(List<TreeEvent> tree) {
+	public SnmpHelperTree(List<TreeEvent> tree) {
 		this.tree = tree;
 		loadTreeEventList();
 	}

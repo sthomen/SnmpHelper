@@ -1,11 +1,11 @@
 package net.shangtai.snmphelper;
 
-class SnmpHelperException extends Exception {
-	SnmpHelperException() {
+public class SnmpHelperException extends Exception {
+	public SnmpHelperException() {
 		super();
 	}
 
-	SnmpHelperException(String message) {
+	public SnmpHelperException(String message) {
 		super(message);
 	}
 }

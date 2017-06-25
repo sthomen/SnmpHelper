@@ -21,7 +21,7 @@ import org.snmp4j.security.PrivAES256;
 import java.util.Map;
 import java.util.HashMap;
 
-class SnmpHelperMap {
+public class SnmpHelperMap {
 	private final static Map<String,OID> authmap=createAuthMap();
 	private final static Map<String,OID> privmap=createPrivMap();
 	private final static Map<String,Integer> typemap=createTypeMap();
