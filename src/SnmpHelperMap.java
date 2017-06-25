@@ -18,6 +18,8 @@ import org.snmp4j.security.PrivAES;
 import org.snmp4j.security.PrivAES128;
 import org.snmp4j.security.PrivAES192;
 import org.snmp4j.security.PrivAES256;
+
+import java.util.Set;
 import java.util.Map;
 import java.util.HashMap;
 
@@ -38,7 +40,8 @@ public class SnmpHelperMap {
 	}
 
 	public static String[] getAvailableAuthMethods() {
-		return (String[])SnmpHelperMap.authmap.keySet().toArray();
+		Set<String> keys=SnmpHelperMap.authmap.keySet();
+		return keys.toArray(new String[keys.size()]);
 	}
 
 	public static OID getAuthID(String id) {
@@ -61,7 +64,8 @@ public class SnmpHelperMap {
 	}
 
 	public static String[] getAvailablePrivMethods() {
-		return (String[])SnmpHelperMap.privmap.keySet().toArray();
+		Set<String> keys=SnmpHelperMap.authmap.keySet();
+		return keys.toArray(new String[keys.size()]);
 	}
 
 	public static OID getPrivID(String id) {
