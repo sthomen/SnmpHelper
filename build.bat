@@ -4,7 +4,7 @@ set JAR=%JAVA_HOME%\bin\jar.exe
 
 for /f %%f in ('dir /b snmp4j*.jar') do set "SNMP4J=%%~nxf"
 
-set JAVAC_ARGS=-sourcepath src -d . -cp ".;%SNMP4J%"
+set JAVAC_ARGS=-source "1.7" -target "1.7" -sourcepath src -d . -cp ".;%SNMP4J%"
 
 echo Compiling java files...
 
