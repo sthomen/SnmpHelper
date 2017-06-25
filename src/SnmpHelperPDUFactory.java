@@ -1,3 +1,5 @@
+package net.shangtai.snmphelper;
+
 import org.snmp4j.Target;
 import org.snmp4j.PDU;
 import org.snmp4j.ScopedPDU;

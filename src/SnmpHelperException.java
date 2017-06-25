@@ -1,3 +1,5 @@
+package net.shangtai.snmphelper;
+
 class SnmpHelperException extends Exception {
 	SnmpHelperException() {
 		super();

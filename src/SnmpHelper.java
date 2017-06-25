@@ -1,3 +1,5 @@
+package net.shangtai.snmphelper;
+
 import org.snmp4j.*;
 import org.snmp4j.smi.*;
 import org.snmp4j.security.*;

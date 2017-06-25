@@ -1,3 +1,5 @@
+package net.shangtai.snmphelper;
+
 /* Auth and Priv maps return OIDs */
 import org.snmp4j.smi.OID;
 

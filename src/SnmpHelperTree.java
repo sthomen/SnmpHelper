@@ -1,3 +1,5 @@
+package net.shangtai.snmphelper;
+
 import org.snmp4j.smi.OID;
 import org.snmp4j.smi.Variable;
 import org.snmp4j.smi.VariableBinding;
