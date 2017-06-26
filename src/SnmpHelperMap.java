@@ -64,7 +64,7 @@ public class SnmpHelperMap {
 	}
 
 	public static String[] getAvailablePrivMethods() {
-		Set<String> keys=SnmpHelperMap.authmap.keySet();
+		Set<String> keys=SnmpHelperMap.privmap.keySet();
 		return keys.toArray(new String[keys.size()]);
 	}
 
