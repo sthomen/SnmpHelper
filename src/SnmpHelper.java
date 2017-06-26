@@ -41,6 +41,8 @@ public class SnmpHelper {
 	private OID privhash=null;
 	private OctetString priv_password=null;
 
+	private String error=null;
+
 	public SnmpHelper() {
 		try {
 			transport = new DefaultUdpTransportMapping();
@@ -48,6 +50,7 @@ public class SnmpHelper {
 
 			transport.listen();
 		} catch (IOException e) { 
+			error = e.getMessage();
 			snmp = null;
 			transport = null;
 		}
@@ -192,7 +195,7 @@ public class SnmpHelper {
 	// Initializes a target (if required) for the get/set/walk methods
 	public SnmpHelper initializeV2cTarget() throws IOException {
 		if (snmp == null)
-			throw new IOException();
+			throw new IOException(error);
 
 		if (community != null && address != null) {
 			v2ctarget = new CommunityTarget();
@@ -252,8 +255,7 @@ public class SnmpHelper {
 	// Initializes a target (if required) for the get/set/walk methods
 	public SnmpHelper initializeV3Target() throws IOException {
 		if (snmp == null)
-			throw new IOException();
-
+			throw new IOException(error);
 
 		if (usm == null) {
 			usm = new USM(SecurityProtocols.getInstance(), new OctetString(MPv3.createLocalEngineID()), 0);
