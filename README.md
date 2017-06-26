@@ -1,5 +1,7 @@
-SnmpHelper 1.1
-==============
+SnmpHelper
+==========
+
+Version 1.2
 
 This is a small class that makes working with SNMP4J much simpler for
 non-complicated queries.
