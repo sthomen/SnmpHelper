@@ -43,6 +43,9 @@ public class SnmpHelperTree {
 
 			VariableBinding[] vbe = te.getVariableBindings();
 
+			if (vbe == null)
+				continue;
+
 			for (int i = 0;i<vbe.length;i++) {
 				contents.put(vbe[i].getOid().toString(), vbe[i].getVariable().toString());
 			}
