@@ -91,6 +91,32 @@ public class SnmpHelper {
 		return this;
 	}
 
+	// endpoint
+	public boolean validateSetup() {
+		switch (version) {
+			default:
+			case SnmpConstants.version1:
+			case SnmpConstants.version2c:
+				return validateV2cSetup();
+			case SnmpConstants.version3:
+				return validateV3Setup();
+		}
+	}
+
+	protected boolean validateV2cSetup() {
+		if (community == null || address == null)
+			return false;
+
+		return true;
+	}
+
+	protected boolean validateV3Setup() {
+		if (address == null || username == null)
+			return false;
+
+		return true;
+	}
+
 	// closes the transport channel, for cleanup
 	// endpoint
 	public void close() throws IOException {
@@ -197,7 +223,7 @@ public class SnmpHelper {
 		if (snmp == null)
 			throw new IOException(error);
 
-		if (community != null && address != null) {
+		if (validateV2cSetup()) {
 			v2ctarget = new CommunityTarget();
 			v2ctarget.setCommunity(new OctetString(community));
 			v2ctarget.setVersion(version);
@@ -262,7 +288,7 @@ public class SnmpHelper {
 			SecurityModels.getInstance().addSecurityModel(usm);
 		}
 
-		if (username != null && address != null) {
+		if (validateV3Setup()) {
 			UsmUserEntry user = snmp.getUSM().getUser(snmp.getUSM().getLocalEngineID(), username);
 
 			if (user == null) {
