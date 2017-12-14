@@ -310,7 +310,7 @@ public class SnmpHelper {
 
 			if (authhash == null && privhash == null)
 				v3target.setSecurityLevel(SecurityLevel.NOAUTH_NOPRIV);
-
+			
 			if (authhash != null && privhash == null)
 				v3target.setSecurityLevel(SecurityLevel.AUTH_NOPRIV);
 
@@ -362,7 +362,7 @@ public class SnmpHelper {
 	}
 
 	public SnmpHelper setPrivHash(OID id) {
-		authhash = id;
+		privhash = id;
 		return this;
 	}
 
