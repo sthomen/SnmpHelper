@@ -45,7 +45,7 @@ public class SnmpHelperMap {
 	}
 
 	public static OID getAuthID(String id) {
-		return SnmpHelperMap.authmap.get(id);
+		return SnmpHelperMap.authmap.get(id.toLowerCase());
 	}
 
 
@@ -69,7 +69,7 @@ public class SnmpHelperMap {
 	}
 
 	public static OID getPrivID(String id) {
-		return SnmpHelperMap.privmap.get(id);
+		return SnmpHelperMap.privmap.get(id.toLowerCase());
 	}
 
 	private static Map<String,Integer> createTypeMap() {
